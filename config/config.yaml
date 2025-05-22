@@ -1,0 +1,4 @@
+model_path: "../models/yolov8s.pt"
+video_path: "../videos/video2.mp4"
+output_path: "../output/"
+analytics_path: "../output/analytics/"
