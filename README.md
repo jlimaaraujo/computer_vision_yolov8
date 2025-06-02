@@ -10,7 +10,8 @@ computer_vision_yolov8/
    └── analytics/            
 ├── config/              # Arquivos de configuração do modelo
 ├── models/              # Modelos YOLOv8
-├── src/                 # Código-fonte principal 
+├── src/                 # Código-fonte principal
+├── videos/                  
 ├── requirements.txt     # Dependências do projeto
 └── README.md            # Documentação do projeto
 ```
