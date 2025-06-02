@@ -6,8 +6,8 @@ from datetime import datetime
 class PersonCounter:
     def __init__(self, frame_width, frame_height, fps):
         # Format: [x1, y1, x2, y2] as percentages of frame dimensions
-        self.entry_zone = [0.2, 0, 0.9, 0.5]  # Left 30% of the frame
-        self.exit_zone = [0.9, 0, 1.0, 1.0]  # Right 30% of the frame
+        self.entry_zone = [0.2, 0, 0.9, 0.5]  
+        self.exit_zone = [0.9, 0, 1.0, 1.0] 
         
         # Convert percentages to pixel coordinates
         self.entry_zone_pixels = [
@@ -196,3 +196,28 @@ class PersonCounter:
                         cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 255), 2)
         
         return frame
+    
+    def draw_trajectories(self, frame):
+        """Draw trajectories of people on the frame"""
+        for person_id, person in self.people_data.items():
+            positions = person.get('positions', [])  # Mudança aqui: 'positions' em vez de 'trajectory'
+            if len(positions) > 1:
+                centers = []
+                for pos in positions:
+                    center_x = (pos[0] + pos[2]) / 2  # Centro X da bbox
+                    center_y = (pos[1] + pos[3]) / 2  # Centro Y da bbox
+                    centers.append((int(center_x), int(center_y)))
+                
+                for i in range(1, len(centers)):
+                    pt1 = centers[i-1]
+                    pt2 = centers[i]
+                    
+                    color_idx = person_id % 6
+                    colors = [(0, 255, 255), (255, 0, 255), (255, 255, 0), 
+                            (0, 255, 0), (255, 0, 0), (0, 0, 255)]
+                    color = colors[color_idx]
+                    
+                    cv2.line(frame, pt1, pt2, color, 2)
+        
+        return frame
+
