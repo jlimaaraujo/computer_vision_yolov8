@@ -6,7 +6,8 @@ Este projeto implementa soluções de visão computacional utilizando o modelo Y
 
 ```
 computer_vision_yolov8/
-├── output/              # output de análise de desempenho e métricas
+├── output/              # Output de análise de desempenho e métricas
+   └── analytics            
 ├── config/              # Arquivos de configuração do modelo
 ├── models/              # Modelos YOLOv8
 ├── src/                 # Código-fonte principal 
